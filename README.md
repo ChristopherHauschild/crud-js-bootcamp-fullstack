@@ -28,7 +28,7 @@ Esse procedimento pode ser realizado ainda através da extensão Live Server no 
 
 ### Maiores informações: :pencil:
 
-As demais atividades e projetos desenvolvidos durante o Bootcamp pode ser encontradas neste <a href="https://github.com/ChristopherHauschild/bootcamp-fullstack-igti">link</a>
+As demais atividades e projetos desenvolvidos durante o Bootcamp podem ser encontradas neste <a href="https://github.com/ChristopherHauschild/bootcamp-fullstack-igti">link</a>
 
 <hr>
 
