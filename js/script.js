@@ -1,20 +1,21 @@
-window.addEventListener('load', start)
+'use strict'
 
-var globalNames = []
-var inputName = null
-var isEditing = false
-var currentIndex = null
+let globalNames = []
+let inputName = null // Não se tem certeza que aplicação terminou o load
+let isEditing = false
+let currentIndex = null
 
-function start() {
+window.addEventListener('load', () => {
   inputName = document.querySelector('#inputName')
 
   preventFormSubmit()
-  startInput()
+  activateInput()
   
   render()
-}
+})
 
 function preventFormSubmit() {
+  // Prevenindo evento padrão do form
   function handleFormSubmit(event) {
     event.preventDefault()
   }
@@ -23,9 +24,11 @@ function preventFormSubmit() {
   form.addEventListener('submit', handleFormSubmit)
 }
 
-function startInput() {
+function activateInput() {
+  // Capturando evento 'Enter' do input e inserido nomes no array
   function insertName(newName) {
-    globalNames.push(newName)
+    // globalNames.push(newName)
+    globalNames = [...globalNames, newName]
   }
 
   function updateName(newName) {
@@ -33,8 +36,8 @@ function startInput() {
   }
 
   function handleTyping(event) {
-
-    var hasText = !!event.target.value && event.target.value.trim() !== ''
+    // !! -> torna valor true
+    const hasText = !!event.target.value && event.target.value.trim() !== ''
 
     if(!hasText) {
       clearInput()
@@ -63,11 +66,24 @@ function startInput() {
 }
 
 function render() {
-  
+  // Inserção de forma dinâmica na lista de nomes
+
   function createDeleteButton(index) {
     function deleteName() {
       console.log(index)
-      globalNames.splice(index, 1)
+      // Remove elemento referente ao index
+      //globalNames.splice(index, 1) -> mutável
+      
+      // globalNames = globalNames.filter((name, i) => {
+        // if (i === index) {
+          // return false // descarta elemento igual ao index passado
+        //}
+        // return true
+        
+        // return i !== index;
+      //})
+
+      globalNames = globalNames.filter((_, i) => i !== index)
       render()
     }
 
@@ -120,7 +136,12 @@ function render() {
   clearInput()
 }
 
-function clearInput() {
+// function clearInput() {
+//   inputName.value = ''
+//   inputName.focus()
+// }
+
+const clearInput = () => {
   inputName.value = ''
   inputName.focus()
 }
